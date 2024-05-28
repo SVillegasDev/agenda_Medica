@@ -1,0 +1,158 @@
+﻿@page "/especialistas"
+@using agendamedica.Data
+@inject DialogService DialogService
+
+<div id="espaciado">
+    <h1 class="mt-2 m-lg-2 pb-3">Especialistas</h1>
+    <RadzenButton Icon="add_circle_outline" Text="Agregar especialista" class="mt-2 mb-4" Click="@(e => CreateForm(especialista))" />
+
+    <RadzenDataGrid Data="@especialistas" TItem="Especialista" FilterPopupRenderMode="PopupRenderMode.Initial" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" FilterMode="FilterMode.Simple" AllowSorting="true" AllowFiltering="true" AllowPaging="true" PageSize="12">
+        <Columns>
+            <RadzenDataGridColumn TItem="Especialista" Property="Rut" Title="Rut" />
+            <RadzenDataGridColumn TItem="Especialista" Property="Nombre" Title="Nombre" />
+            <RadzenDataGridColumn TItem="Especialista" Property="ApellidoPaterno" Title="Apellido paterno" />
+            <RadzenDataGridColumn TItem="Especialista" Property="ApellidoMaterno" Title="Apellido materno" />
+            <RadzenDataGridColumn TItem="Especialista" Property="Especialidad" Title="Especialidad" />
+            <RadzenDataGridColumn TItem="Especialista" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="100px" Title="Editar">
+                <Template Context="especialista">
+                    <RadzenButton Icon="edit" ButtonType="ButtonType.Submit" ButtonStyle="ButtonStyle.Info" Click="@(e => EditForm(especialista))" />
+                </Template>
+            </RadzenDataGridColumn>
+            <RadzenDataGridColumn TItem="Especialista" Filterable="false" Sortable="false" TextAlign="TextAlign.Center" Width="100px" Title="Eliminar">
+                <Template Context="especialista">
+                    <RadzenButton Icon="delete" ButtonType="ButtonType.Submit" ButtonStyle="ButtonStyle.Danger" Click="@(e => VentanaConfirmacion(especialista.Id))" />
+                </Template>
+            </RadzenDataGridColumn>
+        </Columns>
+    </RadzenDataGrid>
+</div>
+
+@code {
+    @inject Microsoft.AspNetCore.Components.NavigationManager NavigationManager
+    @inject agendamedica.Iservice.IEspecialistaService especialistaService
+    @inject agendamedica.Iservice.IAreaMedicaService areaMedicaService
+    Especialista especialista = new Especialista();
+    AreaMedica areaMedica = new AreaMedica();
+    List<Especialista> especialistas = new List<Especialista>();
+    List<AreaMedica> areasMedicas = new List<AreaMedica>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        GetEspecialistas();
+        GetAreasMedicas();
+    }
+
+    private void GetEspecialistas()
+    {
+        especialistas = especialistaService.GetEspecialista();
+    }
+
+    private void GetAreasMedicas()
+    {
+        areasMedicas = areaMedicaService.GetAreasMedicas();
+    }
+
+    async Task CreateForm(Especialista especialista)
+    {
+        Especialista data = await DialogService.OpenAsync<AddEspecialista>("Agregar especialista", new Dictionary<string, object>());
+        if (data != null)
+        {
+            especialistaService.SaveOrUpdate(data);
+            NavigationManager.NavigateTo(NavigationManager.Uri, true);
+        }
+    }
+
+    async Task CreateFormArea(AreaMedica areaMedica)
+    {
+        AreaMedica data = await DialogService.OpenAsync<AddAreaMedica>("Agregar area medica", new Dictionary<string, object>());
+        if (data != null)
+        {
+            areaMedicaService.SaveOrUpdate(data);
+            NavigationManager.NavigateTo(NavigationManager.Uri, true);
+        }
+    }
+
+    async Task EditForm(Especialista especialista)
+    {
+        var copy = new Especialista
+                {
+                    Id = especialista.Id,
+                    Nombre = especialista.Nombre,
+                    ApellidoPaterno = especialista.ApellidoPaterno,
+                    ApellidoMaterno = especialista.ApellidoMaterno,
+                    Especialidad = especialista.Especialidad,
+                    Rut = especialista.Rut
+                };
+
+        var data = await DialogService.OpenAsync<EditEspecialista>("Editar especialista", new Dictionary<string, object> { { "Especialista", copy } });
+
+        if (data != null)
+        {
+            especialistaService.SaveOrUpdate(data);
+            NavigationManager.NavigateTo(NavigationManager.Uri, true);
+        }
+    }
+
+    private void Delete(string especialistaId)
+    {
+        especialistaService.Delete(especialistaId);
+        GetEspecialistas();
+    }
+
+    async Task VentanaConfirmacion(string especialistaId)
+    {
+        var result = await DialogService.OpenAsync("Confirmar", ds =>
+    @<RadzenStack Gap="1.5rem">
+        <p>¿Está seguro de que desea <strong>eliminar</strong> el registro?</p>
+        <RadzenStack Orientation="Orientation.Vertical" Gap="0.5rem" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.SpaceBetween">
+            <RadzenStack Orientation="Orientation.Horizontal">
+                <RadzenButton Text="Eliminar" Click="() => ConfirmarDelete(especialistaId)" ButtonStyle="ButtonStyle.Danger" />
+                <RadzenButton Text="Cancelar" Click="() => Cancelar()" ButtonStyle="ButtonStyle.Light" />
+            </RadzenStack>
+        </RadzenStack>
+    </RadzenStack>
+    );
+
+        if (result.HasValue && result.Value)
+        {
+            // Usuario hizo clic en "Ok", eliminar el registro
+            Delete(especialistaId);
+        }
+    }
+
+    private void ConfirmarDelete(string especialistaId)
+    {
+        // Cerrar el cuadro de diálogo antes de realizar la eliminación
+        NavigationManager.NavigateTo(NavigationManager.Uri, true);
+
+        // Eliminar el registro
+        especialistaService.Delete(especialistaId);
+        GetEspecialistas();
+    }
+
+    private void Cancelar()
+    {
+        NavigationManager.NavigateTo(NavigationManager.Uri, true);
+    }
+}
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+

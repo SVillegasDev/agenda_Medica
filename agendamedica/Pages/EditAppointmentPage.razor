@@ -1,0 +1,102 @@
+﻿@using agendamedica.Data;
+@inject DialogService DialogService
+
+<RadzenTemplateForm TItem="Appointment" Data="@model" Submit=@OnSubmit>
+    <div class="row" style="margin-bottom: 16px">
+        <div class="col-md-3">
+            <RadzenLabel Text="Rut" />
+        </div>
+        <div class="col">
+            <RadzenTextBox @bind-Value="@model.Rut" Name="Rut" />
+            <RadzenRequiredValidator Text="Ingrese rut" Component="Rut" />
+        </div>
+    </div>
+    <div class="row" style="margin-bottom: 16px">
+        <div class="col-md-3">
+            <RadzenLabel Text="Nombre" />
+        </div>
+        <div class="col">
+            <RadzenTextBox @bind-Value="@model.PaNombre" Name="PaNombre" />
+            <RadzenRequiredValidator Text="ingrese nombre" Component="PaNombre" />
+        </div>
+    </div>
+    <div class="row" style="margin-bottom: 16px">
+        <div class="col-md-3">
+            <RadzenLabel Text="Apellidos" />
+        </div>
+        <div class="col">
+            <RadzenTextBox @bind-Value="@model.PaApellidoPa" Name="PaApellidoPa" />
+            <RadzenRequiredValidator Text="ingrese apellido paterno" Component="PaApellidoPa" />
+            <RadzenTextBox @bind-Value="@model.PaApellidoMa" Name="PaApellidoMa" />
+            <RadzenRequiredValidator Text="ingrese apellido materno" Component="PaApellidoMa" />
+        </div>
+    </div>
+    <div class="row" style="margin-bottom: 16px">
+        <div class="col-md-3">
+            <RadzenLabel Text="Especialista" />
+        </div>
+        <div class="col">
+            <RadzenTextBox @bind-Value="@model.Area" />
+
+            <RadzenDropDown @bind-Value="model.EsRut" Data="@especialistas" ValueProperty="Rut">
+                <Template Context="especialista">
+                    @($"{especialista.Nombre} {especialista.ApellidoPaterno}")
+                </Template>
+            </RadzenDropDown>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom: 16px">
+        <div class="col-md-3">
+            <RadzenLabel Text="Start" />
+        </div>
+        <div class="col">
+            <RadzenDatePicker @bind-Value="@model.Start" Name="Start" ShowTime="true" />
+            <RadzenRequiredValidator Text="Start is required" Component="Start" />
+        </div>
+    </div>
+    <div class="row" style="margin-bottom: 16px">
+        <div class="col-md-3">
+            <RadzenLabel Text="End" />
+        </div>
+        <div class="col">
+            <RadzenDatePicker Name="End" @bind-Value="@model.End" ShowTime="true" />
+            <RadzenRequiredValidator Component="End" Text="End is required" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col">
+            <RadzenButton ButtonType="ButtonType.Submit" Text="Guardar" />
+        </div>
+    </div>
+</RadzenTemplateForm>
+@code {
+    [Parameter]
+    public Appointment Appointment { get; set; }
+
+    Appointment model = new Appointment();
+
+    protected override void OnParametersSet()
+    {
+        model = Appointment;
+    }
+
+    void OnSubmit(Appointment model)
+    {
+        DialogService.Close(model);
+    }
+
+
+    @inject agendamedica.Iservice.IEspecialistaService especialistaService
+    IEnumerable<Especialista> especialistas;
+
+    protected override async Task OnInitializedAsync()
+    {
+        GetEspecialistas();
+    }
+
+    private void GetEspecialistas()
+    {
+        especialistas = especialistaService.GetEspecialista();
+    }
+}

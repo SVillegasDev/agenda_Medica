@@ -1,0 +1,72 @@
+﻿@using agendamedica.Data;
+@inject DialogService DialogService
+
+<RadzenTemplateForm TItem="Especialista" Data="@model" Submit=@OnSubmit>
+    <div class="row" style="margin-bottom: 16px">
+        <div class="col-md-3">
+            <RadzenLabel Text="Rut" />
+        </div>
+        <div class="col">
+            <RadzenTextBox @bind-Value="@model.Rut" Name="Rut" />
+            <RadzenRequiredValidator Text="Ingrese Rut" Component="Rut" />
+        </div>
+    </div>
+    <div class="row" style="margin-bottom: 16px">
+        <div class="col-md-3">
+            <RadzenLabel Text="Nombre" />
+        </div>
+        <div class="col">
+            <RadzenTextBox @bind-Value="@model.Nombre" Name="Nombre" />
+            <RadzenRequiredValidator Text="Ingrese nombre" Component="Nombre" />
+        </div>
+    </div>
+    <div class="row" style="margin-bottom: 16px">
+        <div class="col-md-3">
+            <RadzenLabel Text="Apellidos" />
+        </div>
+        <div class="col">
+            <RadzenTextBox @bind-Value="@model.ApellidoPaterno" Name="ApellidoPaterno" />
+            <RadzenRequiredValidator Text="Ingrese apellido paterno" Component="ApellidoPaterno" />
+        </div>
+        <div class="col">
+            <RadzenTextBox @bind-Value="@model.ApellidoMaterno" Name="ApellidoMaterno" />
+            <RadzenRequiredValidator Text="Ingrese apellido materno" Component="ApellidoMaterno" />
+        </div>
+    </div>
+    <div class="row" style="margin-bottom: 16px">
+        <div class="col-md-3">
+            <RadzenLabel Text="Especialidad" />
+        </div>
+        <div class="col">
+            <RadzenDropDown @bind-Value="model.Especialidad" AllowClear="true" Placeholder="Seleccionar area" Data="@areasMedicas"
+                            Style="width: 100%;max-width: 350px;" TextProperty="Nombre" ValueProperty="Nombre" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col">
+            <RadzenButton ButtonType="ButtonType.Submit" Text="Save" />
+        </div>
+    </div>
+</RadzenTemplateForm>
+@code {
+    Especialista model = new Especialista();
+
+    void OnSubmit(Especialista model)
+    {
+        DialogService.Close(model);
+    }
+
+    @inject agendamedica.Iservice.IAreaMedicaService areaMedicaService
+    IEnumerable<AreaMedica> areasMedicas;
+
+    protected override async Task OnInitializedAsync()
+    {
+        GetAreasMedicas();
+    }
+
+    private void GetAreasMedicas()
+    {
+        areasMedicas = areaMedicaService.GetAreasMedicas();
+    }
+}

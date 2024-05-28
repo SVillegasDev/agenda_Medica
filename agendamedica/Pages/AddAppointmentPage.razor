@@ -1,0 +1,130 @@
+﻿@using agendamedica.Data;
+@inject DialogService DialogService
+
+<RadzenTemplateForm TItem="Appointment" Data="@model" Submit=@OnSubmit>
+    <div class="row" style="margin-bottom: 16px">
+        <div class="col-md-3">
+            <RadzenLabel Text="Rut" />
+        </div>
+        <div class="col">
+            <RadzenTextBox @bind-Value="@model.Rut" Name="Rut" />
+            <RadzenRequiredValidator Text="Ingrese rut" Component="Rut" />
+        </div>
+    </div>
+    <div class="row" style="margin-bottom: 16px">
+        <div class="col-md-3">
+            <RadzenLabel Text="Nombre" />
+        </div>
+        <div class="col">
+            <RadzenTextBox @bind-Value="@model.PaNombre" Name="PaNombre" />
+            <RadzenRequiredValidator Text="Ingrese nombre paciente" Component="PaNombre" />
+        </div>
+    </div>
+    <div class="row" style="margin-bottom: 16px">
+        <div class="col-md-3">
+            <RadzenLabel Text="Apellidos" />
+        </div>
+        <div class="col">
+            <RadzenTextBox @bind-Value="@model.PaApellidoPa" Name="PaApellidoPa" />
+            <RadzenRequiredValidator Text="Ingrese apellido paterno" Component="PaApellidoPa" />
+            <RadzenTextBox @bind-Value="@model.PaApellidoMa" Name="PaApellidoMa" />
+            <RadzenRequiredValidator Text="Ingrese apellido materno" Component="PaApellidoMa" />
+        </div>
+    </div>   
+    <div class="row" style="margin-bottom: 16px">
+        <div class="col">
+            <RadzenDropDown @bind-Value="model.Area" AllowClear="true" Placeholder="Seleccionar area" Data="@areasMedicas"
+                            Style="width: 100%;max-width: 350px;" TextProperty="Nombre" ValueProperty="Nombre" Change="@DropDownChange">
+            </RadzenDropDown>
+        </div>
+
+        <div class="col">
+            <RadzenDropDown @bind-Value="model.EsRut" AllowClear="true" Placeholder="Seleccionar especialista" Data="@especialistasDrop"
+                            Style="width: 100%;max-width: 350px;" TextProperty="Nombre" ValueProperty="Rut" Name="Nombre">
+                <Template Context="especialista">
+                    @($"{especialista.Nombre} {especialista.ApellidoPaterno}")
+                </Template>
+            </RadzenDropDown>
+        </div>       
+    </div>  
+
+    
+    <div class="row" style="margin-bottom: 16px">
+        <div class="col-md-3">
+            <RadzenLabel Text="Start" />
+        </div>
+        <div class="col">
+            <RadzenDatePicker @bind-Value="@model.Start" Name="Start" ShowTime="true" />
+            <RadzenRequiredValidator Text="Ingrese fecha y hora" Component="Start" />
+        </div>
+    </div>
+    <div class="row" style="margin-bottom: 16px">
+        <div class="col-md-3">
+            <RadzenLabel Text="End" />
+        </div>
+        <div class="col">
+            <RadzenDatePicker Name="End" @bind-Value="@model.End" ShowTime="true" />
+            <RadzenRequiredValidator Text="Ingrese fecha y hora" Component="End" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col">
+            <RadzenButton ButtonType="ButtonType.Submit" Text="Guardar" />
+        </div>
+    </div>
+</RadzenTemplateForm>
+@code {
+    [Parameter]
+    public DateTime Start { get; set; }
+
+    [Parameter]
+    public DateTime End { get; set; }
+
+    Appointment model = new Appointment();
+
+    protected override void OnParametersSet()
+    {
+        model.Start = Start;
+        model.End = End;
+    }
+
+    void OnSubmit(Appointment model)
+    {
+        DialogService.Close(model);
+    }
+
+    @inject agendamedica.Iservice.IEspecialistaService especialistaService
+    @inject agendamedica.Iservice.IAreaMedicaService areaMedicaService
+    IEnumerable<Especialista> especialistas;
+    IEnumerable<AreaMedica> areasMedicas;
+
+    protected override async Task OnInitializedAsync()
+    {
+        GetEspecialistas();
+        GetAreasMedicas();
+    }
+
+    private void GetEspecialistas()
+    {
+        especialistas = especialistaService.GetEspecialista();
+    }
+
+    private void GetAreasMedicas()
+    {
+        areasMedicas = areaMedicaService.GetAreasMedicas();
+    }
+
+
+    List<Especialista> especialistasDrop = new List<Especialista>();
+
+    void DropDownChange(object value)
+    {
+        if (value != null)
+        {
+            string especialidadSelect = (string)value;
+            especialistasDrop = especialistas.Where(e => e.Especialidad == especialidadSelect).ToList();
+        }
+
+    }
+}

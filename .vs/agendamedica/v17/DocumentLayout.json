@@ -1,0 +1,157 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\visual studio\\agendamedica\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{40D3FE20-909C-4ACA-8893-4AA77B5E3C35}|agendamedica\\agendamedica.csproj|d:\\visual studio\\agendamedica\\agendamedica\\pages\\addappointmentpage.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{40D3FE20-909C-4ACA-8893-4AA77B5E3C35}|agendamedica\\agendamedica.csproj|solutionrelative:agendamedica\\pages\\addappointmentpage.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{40D3FE20-909C-4ACA-8893-4AA77B5E3C35}|agendamedica\\agendamedica.csproj|d:\\visual studio\\agendamedica\\agendamedica\\pages\\index.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{40D3FE20-909C-4ACA-8893-4AA77B5E3C35}|agendamedica\\agendamedica.csproj|solutionrelative:agendamedica\\pages\\index.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{40D3FE20-909C-4ACA-8893-4AA77B5E3C35}|agendamedica\\agendamedica.csproj|d:\\visual studio\\agendamedica\\agendamedica\\shared\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{40D3FE20-909C-4ACA-8893-4AA77B5E3C35}|agendamedica\\agendamedica.csproj|solutionrelative:agendamedica\\shared\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{40D3FE20-909C-4ACA-8893-4AA77B5E3C35}|agendamedica\\agendamedica.csproj|d:\\visual studio\\agendamedica\\agendamedica\\shared\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{40D3FE20-909C-4ACA-8893-4AA77B5E3C35}|agendamedica\\agendamedica.csproj|solutionrelative:agendamedica\\shared\\mainlayout.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{40D3FE20-909C-4ACA-8893-4AA77B5E3C35}|agendamedica\\agendamedica.csproj|d:\\visual studio\\agendamedica\\agendamedica\\shared\\navmenu.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{40D3FE20-909C-4ACA-8893-4AA77B5E3C35}|agendamedica\\agendamedica.csproj|solutionrelative:agendamedica\\shared\\navmenu.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{40D3FE20-909C-4ACA-8893-4AA77B5E3C35}|agendamedica\\agendamedica.csproj|d:\\visual studio\\agendamedica\\agendamedica\\pages\\especialistas.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{40D3FE20-909C-4ACA-8893-4AA77B5E3C35}|agendamedica\\agendamedica.csproj|solutionrelative:agendamedica\\pages\\especialistas.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{40D3FE20-909C-4ACA-8893-4AA77B5E3C35}|agendamedica\\agendamedica.csproj|d:\\visual studio\\agendamedica\\agendamedica\\wwwroot\\assets\\css\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{40D3FE20-909C-4ACA-8893-4AA77B5E3C35}|agendamedica\\agendamedica.csproj|solutionrelative:agendamedica\\wwwroot\\assets\\css\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{40D3FE20-909C-4ACA-8893-4AA77B5E3C35}|agendamedica\\agendamedica.csproj|d:\\visual studio\\agendamedica\\agendamedica\\pages\\editappointmentpage.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{40D3FE20-909C-4ACA-8893-4AA77B5E3C35}|agendamedica\\agendamedica.csproj|solutionrelative:agendamedica\\pages\\editappointmentpage.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 8,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Especialistas.razor",
+              "DocumentMoniker": "D:\\visual studio\\agendamedica\\agendamedica\\Pages\\Especialistas.razor",
+              "RelativeDocumentMoniker": "agendamedica\\Pages\\Especialistas.razor",
+              "ToolTip": "D:\\visual studio\\agendamedica\\agendamedica\\Pages\\Especialistas.razor",
+              "RelativeToolTip": "agendamedica\\Pages\\Especialistas.razor",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-02T00:53:15.338Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MainLayout.razor",
+              "DocumentMoniker": "D:\\visual studio\\agendamedica\\agendamedica\\Shared\\MainLayout.razor",
+              "RelativeDocumentMoniker": "agendamedica\\Shared\\MainLayout.razor",
+              "ToolTip": "D:\\visual studio\\agendamedica\\agendamedica\\Shared\\MainLayout.razor",
+              "RelativeToolTip": "agendamedica\\Shared\\MainLayout.razor",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-01-23T20:00:04.327Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "NavMenu.razor.css",
+              "DocumentMoniker": "D:\\visual studio\\agendamedica\\agendamedica\\Shared\\NavMenu.razor.css",
+              "RelativeDocumentMoniker": "agendamedica\\Shared\\NavMenu.razor.css",
+              "ToolTip": "D:\\visual studio\\agendamedica\\agendamedica\\Shared\\NavMenu.razor.css",
+              "RelativeToolTip": "agendamedica\\Shared\\NavMenu.razor.css",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAC4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-01-23T19:01:38.994Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "style.css",
+              "DocumentMoniker": "D:\\visual studio\\agendamedica\\agendamedica\\wwwroot\\assets\\css\\style.css",
+              "RelativeDocumentMoniker": "agendamedica\\wwwroot\\assets\\css\\style.css",
+              "ToolTip": "D:\\visual studio\\agendamedica\\agendamedica\\wwwroot\\assets\\css\\style.css",
+              "RelativeToolTip": "agendamedica\\wwwroot\\assets\\css\\style.css",
+              "ViewState": "AQIAAIoAAAAAAAAAAAAAAJoAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-01-23T18:52:33.177Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "NavMenu.razor",
+              "DocumentMoniker": "D:\\visual studio\\agendamedica\\agendamedica\\Shared\\NavMenu.razor",
+              "RelativeDocumentMoniker": "agendamedica\\Shared\\NavMenu.razor",
+              "ToolTip": "D:\\visual studio\\agendamedica\\agendamedica\\Shared\\NavMenu.razor",
+              "RelativeToolTip": "agendamedica\\Shared\\NavMenu.razor",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAACDAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-01-23T18:49:06.041Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Index.razor",
+              "DocumentMoniker": "D:\\visual studio\\agendamedica\\agendamedica\\Pages\\Index.razor",
+              "RelativeDocumentMoniker": "agendamedica\\Pages\\Index.razor",
+              "ToolTip": "D:\\visual studio\\agendamedica\\agendamedica\\Pages\\Index.razor",
+              "RelativeToolTip": "agendamedica\\Pages\\Index.razor",
+              "ViewState": "AQIAACQAAAAAAAAAAAAAAAYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-01-05T02:12:33.734Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "EditAppointmentPage.razor",
+              "DocumentMoniker": "D:\\visual studio\\agendamedica\\agendamedica\\Pages\\EditAppointmentPage.razor",
+              "RelativeDocumentMoniker": "agendamedica\\Pages\\EditAppointmentPage.razor",
+              "ToolTip": "D:\\visual studio\\agendamedica\\agendamedica\\Pages\\EditAppointmentPage.razor",
+              "RelativeToolTip": "agendamedica\\Pages\\EditAppointmentPage.razor",
+              "ViewState": "AQIAAEIAAAAAAAAAAAAAAEQAAABGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2023-12-21T15:45:17.062Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AddAppointmentPage.razor",
+              "DocumentMoniker": "D:\\visual studio\\agendamedica\\agendamedica\\Pages\\AddAppointmentPage.razor",
+              "RelativeDocumentMoniker": "agendamedica\\Pages\\AddAppointmentPage.razor",
+              "ToolTip": "D:\\visual studio\\agendamedica\\agendamedica\\Pages\\AddAppointmentPage.razor",
+              "RelativeToolTip": "agendamedica\\Pages\\AddAppointmentPage.razor",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAAEMAAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2023-12-21T15:38:40.852Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

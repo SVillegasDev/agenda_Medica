@@ -1,0 +1,99 @@
+﻿@page "/"
+@inject DialogService DialogService
+@using agendamedica.Data
+
+<div id="espaciado">
+    <h1 class="mt-2 m-lg-2 pb-3">Agenda medica</h1>
+
+    <RadzenScheduler @ref=@scheduler  style="height: 768px;" TItem="Appointment" Data=@appointments StartProperty="Start" EndProperty="End"
+                     TextProperty="PaApellidoPa" SelectedIndex="1"
+                     SlotSelect=@OnSlotSelect AppointmentSelect=@OnAppointmentSelect>
+        <RadzenDayView TimeFormat="HH:mm" />
+        <RadzenWeekView TimeFormat="HH:mm" />
+        <RadzenMonthView />
+        <RadzenYearView />
+    </RadzenScheduler>
+
+
+    @code {
+        RadzenScheduler<Appointment> scheduler;
+        Dictionary<DateTime, string> events = new Dictionary<DateTime, string>();
+
+        @inject agendamedica.Iservice.IAppointmentService appointmentService
+
+        Appointment appointment = new Appointment();
+        IList<Appointment> appointments = new List<Appointment>();
+        @inject agendamedica.Iservice.IEspecialistaService especialistaService
+        IList<Especialista> especialistas = new List<Especialista>();
+
+        protected override async Task OnInitializedAsync()
+        {
+            GetAppointments();
+            GetEspecialistas();
+
+        }
+
+        private void GetAppointments()
+        {
+            appointments = appointmentService.GetAppointment();
+        }
+
+        async Task OnSlotSelect(SchedulerSlotSelectEventArgs args)
+        {
+            if (args.View.Text != "Year")
+            {
+                // getespecialistas();
+                Appointment data = await DialogService.OpenAsync<AddAppointmentPage>("Ingresar cita medica",
+                new Dictionary<string, object> { { "Start", args.Start }, { "End", args.End } });
+
+                if (data != null)
+                {
+                    Especialista especialista = especialistas.FirstOrDefault(e => e.Rut == data.EsRut);
+                    System.Diagnostics.Debug.WriteLine($"data.EspecialistaId: {data.EsRut}");
+                    System.Diagnostics.Debug.WriteLine($"especialista.Id: {especialista.Rut}");
+                    if (especialista != null)
+                    {
+                        data.EsNombre = especialista.Nombre;
+                        data.EsApellido = especialista.ApellidoPaterno;
+                    }
+                    appointments.Add(data);
+                    appointmentService.SaverOrUpdate(data);
+                    await scheduler.Reload();
+                }
+            }
+        }
+
+        async Task OnAppointmentSelect(SchedulerAppointmentSelectEventArgs<Appointment> args)
+        {
+
+            var copy = new Appointment
+            {
+                Id = args.Data.Id,
+                Start = args.Data.Start,
+                End = args.Data.End,
+                PaNombre = args.Data.PaNombre,
+                PaApellidoPa = args.Data.PaApellidoPa,
+                PaApellidoMa = args.Data.PaApellidoMa,
+                Rut = args.Data.Rut,
+                EsRut = args.Data.EsRut,
+                Area = args.Data.Area,
+                EsNombre = args.Data.EsNombre,
+                EsApellido = args.Data.EsApellido
+            };
+
+            var data = await DialogService.OpenAsync<EditAppointmentPage>("Editar reserva", new Dictionary<string, object> { { "Appointment", copy } });
+
+            if (data != null)           
+            {
+                appointmentService.SaverOrUpdate(data);
+            }
+
+            await scheduler.Reload();
+        }
+
+        private void GetEspecialistas()
+        {
+            especialistas = especialistaService.GetEspecialista();
+        }
+    }
+</div>
